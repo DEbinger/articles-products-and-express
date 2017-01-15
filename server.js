@@ -2,7 +2,14 @@
 */
 const express = require('express');
 const handlebars = require('express-handlebars');
-let app = express();
+const app = express();
+const products = require('./routes/products');
+const bodyParser = require('body-parser');
+
+
+
+//bodyParser
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const hbs = handlebars.create({
   extname: '.hbs',
@@ -12,21 +19,14 @@ const hbs = handlebars.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
-/*if (name && price && inventory) {}
-let data = {
-  "productRequest": [
-    {id: 'number',
-    name: 'string' ,
-    price: 'number',
-    inventory: 'number' },
-  ]
-};*/
+/*app.get('/', (req, res) => {
+    res.render('index', products);
+});*/
 
-app.get('/', (req, res) => {
-    res.render('index', data);
-});
-
+app.use('/products', products);
 
 app.listen(3000, () => {
   console.log('listening on port 3000');
 });
+
+module.exports = app;
