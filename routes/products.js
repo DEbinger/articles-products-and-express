@@ -9,14 +9,11 @@ router.get('/', (req, res) => {
 
   res.render('index', {
     productList : products.getAllProducts()
-    //console.log()
   });
 });
 
 router.get('/:id', (req, res) => {
-/*  console.log('hello');*/
   res.render('product', products.getProductById(parseInt(req.params.id)));
-
 });
 
 router.post('/', (req, res) => {
@@ -50,23 +47,4 @@ router.put('/:id', (req, res) => {
   res.redirect(303, '/products/'+ req.params.id);
 });
 
-/*router.put('/:id', (req, res) => {
-  console.log('hello put');
-  let newProduct = req.body;
-  let productToChange = products.getProduct(parseInt(req.params.id));
-  console.log(productToChange);
-
-  if(newProduct.hasOwnProperty('name')){
-    productToChange.name = newProduct.name;
-  }
-  if(newProduct.hasOwnProperty('price')){
-    productToChange.price = newProduct.price;
-  }
-  if(newProduct.hasOwnProperty('inventory')){
-    productToChange.inventory = newProduct.inventory;
-  }
-
-  res.redirect(303, '/products/'+ req.params.id);
-
-});*/
 module.exports = router;
