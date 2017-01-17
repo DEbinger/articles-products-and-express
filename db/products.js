@@ -19,8 +19,18 @@ function getProductById(id) {
   return null;
 }
 
+function deleteProduct(productIdToDelete) {
+  for(var i = 0; i < productsList.length; i++) {
+    if (productsList[i].id === productIdToDelete){
+    productsList.splice(productsList.indexOf(
+      productsList[i]),1);
+    }
+  }
+}
+
 module.exports = {
   getAllProducts: getAllProducts,
   add : add,
-  getProductById : getProductById
+  getProductById : getProductById,
+  deleteProduct : deleteProduct
 };

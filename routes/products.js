@@ -30,7 +30,6 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    console.log('hello');
   let newProduct = req.body;
   let productChange = products.getProductById(parseInt(req.params.id));
 
@@ -45,6 +44,12 @@ router.put('/:id', (req, res) => {
     }
 
   res.redirect(303, '/products/'+ req.params.id);
+});
+
+router.delete('/:id', (req, res) => {
+  products.deleteProduct(parseInt(req.params.id));
+
+    res.redirect(303, '/products');
 });
 
 module.exports = router;
