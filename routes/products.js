@@ -15,7 +15,12 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  res.render('product', products.getProductById(req.params.id));
+  products.getProductById(req.params.id)
+  .then(data => {
+    console.log(data);
+  res.render('product', {product:data});
+  })
+    .catch(error => console.error(error));
 });
 
 router.post('/', (req, res) => {
@@ -26,7 +31,19 @@ router.post('/', (req, res) => {
   .catch(error => console.error(error));
 });
 
-// router.put('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
+  console.log(req.body);
+  products.deleteProduct(req.params.id)
+    .then(results => {
+    res.redirect(303, '/products');
+    })
+    .catch(error => console.error(error));
+});
+
+/*router.put('/:id', (req, res) => {
+
+});
+*/
 //   let newProduct = req.body;
 //   let productChange = products.getProductById(parseInt(req.params.id));
 

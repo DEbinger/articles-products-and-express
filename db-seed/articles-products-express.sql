@@ -12,9 +12,9 @@ CREATE TABLE products (
   id serial PRIMARY KEY NOT NULL,
   name varchar(255) NOT NULL,
   price INTEGER NOT NULL,
-  inventory INTEGER NOT NULL);
-  --created_at timestamp WITH TIME ZONE NOT NULL DEFAULT now(),
-  --updated_at timestamp WITH TIME ZONE NOT NULL DEFAULT now());
+  inventory INTEGER NOT NULL,
+  created_at timestamp WITH TIME ZONE NOT NULL DEFAULT now(),
+  updated_at timestamp WITH TIME ZONE NOT NULL DEFAULT now());
 
 DROP TABLE IF EXISTS articles;
 
